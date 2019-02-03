@@ -69,6 +69,9 @@ class LmsListView(generics.GenericAPIView,
 #    class based rest API CRUD operations
 ################################################
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class LmsAPIView(APIView):
     def get(self, request):
@@ -81,6 +84,7 @@ class LmsAPIView(APIView):
         serializer = LogSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            print("hello I'm here")
             return Response(serializer.data, status=201)
         return Response(serializer.erros, status=400)
 
